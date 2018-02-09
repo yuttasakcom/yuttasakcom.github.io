@@ -10,9 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/yuttasakcom/vue-sample.git"
   },
-  "keywords": [
-    "vue-sample"
-  ],
+  "keywords": ["vue-sample"],
   "author": "Yuttasak Pannawat<yuttasakcom@gmail.com>",
   "license": "MIT",
   "bugs": {

@@ -4,9 +4,9 @@
             <li 
                 :class="{complete: todo.done}"
                 v-for="todo in todos.filter(shouldShowTodo)"
-                :key="todo.id">
+                :key="todo.text">
                 {{ todo.text }}
-                <input type="checkbox" v-model="todo.done">
+                <input type="checkbox" v-model="todo.done" >
             </li>
         </ul>
 
@@ -30,7 +30,7 @@ export default {
     ...mapGetters(["todos", "showDone"])
   },
   methods: {
-    ...mapActions(["setShowDone"]),
+    ...mapActions(["updateShowDone"]),
     shouldShowTodo(todo) {
       if (this.showDone) {
         return true;
@@ -39,7 +39,7 @@ export default {
       }
     },
     showAll() {
-      this.setShowDone(!this.showDone);
+      this.updateShowDone(!this.showDone);
     }
   }
 };
