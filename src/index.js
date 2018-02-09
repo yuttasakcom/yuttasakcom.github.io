@@ -7,5 +7,24 @@ new Vue({
   components: {
     App
   },
-  template: `<App />`
+  template: `<App :state="state" />`,
+  data: {
+    state: {
+      showDone: false,
+      todos: [
+        {
+          text: 'Refactor CSS',
+          done: true
+        },
+        {
+          text: 'Scure Docker Instaces',
+          done: false
+        },
+        {
+          text: 'Inject flavoring',
+          done: false
+        }
+      ]
+    }
+  }
 })
