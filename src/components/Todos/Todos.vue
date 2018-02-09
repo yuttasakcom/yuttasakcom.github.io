@@ -11,13 +11,13 @@
 
         <label for="show-completed" class="show-completed">
             Show Completed Items?
-            <input type="checkbox" :value="this.showDone" @click="setShowDone">
+            <input type="checkbox" :value="this.showDone" @click="showAll">
         </label>
     </div>
 </template>
 
 <script>
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
     import TodoInput from './TodoInput'
     export default {
         components: {
@@ -27,6 +27,7 @@
             ...mapGetters(['todos', 'showDone'])
         },
         methods: {
+            ...mapActions(['setShowDone']),
             shouldShowTodo(todo) {
                 if (this.showDone) {
                     return true
@@ -34,8 +35,8 @@
                     return !todo.done
                 }
             },
-            setShowDone() {
-                this.$store.commit('setShowDone', !this.showDone)
+            showAll() {
+                this.setShowDone(!this.showDone)
             }
         }
     }

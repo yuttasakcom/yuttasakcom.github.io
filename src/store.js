@@ -30,11 +30,15 @@ const store = {
     }
   },
   mutations: {
-    setShowDone(state, payload) {
+    mutate_showDone(state, payload) {
       state.showDone = payload
     }
   },
-  actions: {}
+  actions: {
+    setShowDone(context, payload) {
+      context.commit('mutate_showDone', payload)
+    }
+  }
 }
 
 export default new Vuex.Store(store)
