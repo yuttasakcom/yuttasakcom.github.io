@@ -29,7 +29,11 @@ const store = {
       return showDone
     }
   },
-  mutations: {},
+  mutations: {
+    setShowDone(state, payload) {
+      state.showDone = payload
+    }
+  },
   actions: {}
 }
 

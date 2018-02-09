@@ -11,7 +11,7 @@
 
         <label for="show-completed" class="show-completed">
             Show Completed Items?
-            <input type="checkbox" v-model="showDone">
+            <input type="checkbox" :value="this.showDone" @click="setShowDone">
         </label>
     </div>
 </template>
@@ -33,6 +33,9 @@
                 } else {
                     return !todo.done
                 }
+            },
+            setShowDone() {
+                this.$store.commit('setShowDone', !this.showDone)
             }
         }
     }
