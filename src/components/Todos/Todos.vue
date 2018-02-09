@@ -1,15 +1,13 @@
 <template>
     <div>
         <ul>
-            <li :class="{complete: todo.done}" v-for="todo in $data.todos.filter(shouldShowTodo)">
+            <li :class="{complete: todo.done}" v-for="todo in todos.filter(shouldShowTodo)">
                 {{ todo.text }}
                 <input type="checkbox" v-model="todo.done">
             </li>
         </ul>
 
-        <form @submit="handleAddTodo($event)">
-            <input type="text" v-model="input">
-        </form>
+        <TodoInput />
 
         <label for="show-completed" class="show-completed">
             Show Completed Items?
@@ -19,19 +17,18 @@
 </template>
 
 <script>
+    import { mapGetters } from 'vuex'
+    import TodoInput from './TodoInput'
     export default {
-        props: ['state'],
-        data() {
-            return this.$props.state
+        components: {
+            TodoInput
+        },
+        computed: {
+            ...mapGetters(['todos', 'showDone'])
         },
         methods: {
-            handleAddTodo(e) {
-                e.preventDefault()
-                this.$data.todos.push({ text: this.input, done: false })
-                this.input = ''
-            },
             shouldShowTodo(todo) {
-                if (this.$data.showDone) {
+                if (this.showDone) {
                     return true
                 } else {
                     return !todo.done
@@ -51,12 +48,7 @@
         position: relative;
     }
 
-    input[type=text] {
-        margin-bottom: 1em;
-        padding: 0.8em;
-        width: 90%;
-        font-size: 0.7em;
-    }
+
 
     input[type=checkbox] {
         position: absolute;

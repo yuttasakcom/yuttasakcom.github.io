@@ -42,5 +42,5 @@ export default {
   devServer: {
     inline: true
   },
-  devtool: '#cheap-module-source-map'
+  devtool: '#inline-cheap-module-source-map'
 }
