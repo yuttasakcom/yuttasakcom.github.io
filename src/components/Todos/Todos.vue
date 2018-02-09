@@ -1,7 +1,7 @@
 <template>
     <div>
-        <ul v-for="todo in $data.todos.filter(shouldShowTodo)">
-            <li :class="{complete: todo.done}">
+        <ul>
+            <li :class="{complete: todo.done}" v-for="todo in $data.todos.filter(shouldShowTodo)">
                 {{ todo.text }}
                 <input type="checkbox" v-model="todo.done">
             </li>
