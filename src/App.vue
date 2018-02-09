@@ -2,7 +2,7 @@
     <div>
         <h1>Vue Todos</h1>
 
-        <ul v-for="todo in $data.todos">
+        <ul v-for="todo in $data.todos.filter(shouldShowTodo)">
             <li :class="{complete: todo.done}">
                 {{ todo.text }}
                 <input type="checkbox" v-model="todo.done">
@@ -12,6 +12,11 @@
         <form @submit="handleAddTodo($event)">
             <input type="text" v-model="input">
         </form>
+
+        <label for="show-completed" class="show-completed">
+            Show Completed Items?
+            <input type="checkbox" v-model="showDone">
+        </label>
     </div>
 </template>
 
@@ -26,15 +31,73 @@
                 e.preventDefault()
                 this.$data.todos.push({ text: this.input, done: false })
                 this.input = ''
+            },
+            shouldShowTodo(todo) {
+                if (this.$data.showDone) {
+                    return true
+                } else {
+                    return !todo.done
+                }
             }
         }
     }
 </script>
 
 <style>
+    body {
+        font-family: Helvetica, sans-serif;
+        color: darkslategray;
+        font-size: 1.4em;
+        margin: 1.4em;
+        width: 22em;
+        position: relative;
+    }
+
+    input[type=text] {
+        margin-bottom: 1em;
+        padding: 0.8em;
+        width: 90%;
+        font-size: 0.7em;
+    }
+
+    input[type=checkbox] {
+        position: absolute;
+        right: 0;
+        padding: 1em;
+        cursor: pointer;
+    }
+
+    li {
+        list-style-type: none;
+        padding: 1em 0 1em 0;
+        border-bottom: 1px solid lightblue;
+        position: relative;
+    }
+
+    li input {
+        transform: scale(1.8);
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    label {
+        width: 80%;
+    }
+
     .complete {
         color: gainsboro;
         text-decoration: line-through;
         font-style: italic;
+    }
+
+    .show-completed {
+        font-size: 1rem;
+        color: slategray;
+    }
+
+    .show-completed input {
+        transform: scale(1.4);
     }
 </style>
