@@ -23,7 +23,8 @@ export default {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [path.join(__dirname, '..', './src')]
+        include: [path.join(__dirname, 'src')],
+        exclude: /node_modules/
       },
       {
         test: /\.vue$/,
