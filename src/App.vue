@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <h1>Vue Todos</h1>
-
-        <Todos />
+    <div id="app">
+        <Navbar />
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
-    import Todos from './components/Todos/Todos'
-    export default {
-        components: {
-            Todos
-        }
-    }
+import Navbar from '@/components/Navbar/Navbar'
+export default {
+  name: 'app',
+  components: {
+    Navbar
+  }
+}
 </script>
